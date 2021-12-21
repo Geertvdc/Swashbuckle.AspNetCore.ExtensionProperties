@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Swashbuckle.AspNetCore.ExtensionProperties</id>
+    <version>1.0.0</version>
+    <title>Swashbuckle.AspNetCore.ExtensionProperties</title>
+    <authors>geertvdc</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/Geertvdc/Swashbuckle.AspNetCore.ExtensionProperties</projectUrl>
+    <description>Adding property attributes and filters to Swashbuckle to add Extension Properties to generated swagger files</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Geert van der Cruijsen</copyright>
+    <tags>Swashbuckle Swagger OpenApiSpec SwaggerUi Documentation Discovery WebApi AspNet AspNetWebApi Docs</tags>
+  </metadata>
+</package>
