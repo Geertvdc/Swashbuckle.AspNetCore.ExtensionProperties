@@ -29,5 +29,5 @@ jobs:
       run: dotnet build --no-restore -c release -p:Version=${{env.FULLVERSION}}
     - name: Test
       run: dotnet test --no-build --verbosity normal -c release
-    - name: Package
-      run: dotnet pack -c release
+    - name: Publish to Nuget
+      run: dotnet nuget push bin/release/Swashbuckle.AspNetCore.ExtensionProperties.${{env.FULLVERSION}}.nupkg -k ${{secret.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
