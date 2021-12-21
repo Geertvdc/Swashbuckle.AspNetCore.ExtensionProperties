@@ -14,15 +14,13 @@ jobs:
         shell: bash
         working-directory: src/Swashbuckle.AspNetCore.ExtensionProperties
     steps:
-    - name: Get Version
-      run: |
-        BASEVERSION=$(git describe --abbrev=0 --tags)
-        echo "FULLVERSION=$BASEVERSION.$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
+    - name: Get Version
+      run: echo "FULLVERSION=$(git describe --abbrev=0 --tags).$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
