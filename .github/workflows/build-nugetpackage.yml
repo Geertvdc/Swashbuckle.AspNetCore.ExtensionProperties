@@ -30,4 +30,4 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal -c release
     - name: Publish to Nuget
-      run: dotnet nuget push bin/release/Swashbuckle.AspNetCore.ExtensionProperties.${{ env.FULLVERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push bin/Release/Swashbuckle.AspNetCore.ExtensionProperties.${{ env.FULLVERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
