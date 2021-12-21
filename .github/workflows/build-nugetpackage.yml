@@ -3,8 +3,8 @@ name: Build Test & Publish nuget package
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    paths:
+    - 'src/**'
 
 jobs:
   build:
