@@ -4,7 +4,15 @@ on:
   push:
     branches: [ main ]
     paths:
-    - 'src/**'
+    - 'src/Swashbuckle.AspNetCore.ExtensionProperties/**'
+    
+  pull_request:
+    types: [opened, synchronize, reopened ]
+    branches: [ main ]
+    paths:
+    - 'src/Swashbuckle.AspNetCore.ExtensionProperties/**'
+
+  workflow_dispatch:
 
 jobs:
   build:
@@ -30,4 +38,5 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal -c release
     - name: Publish to Nuget
+      if: github.event_name == 'push' || github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
       run: dotnet nuget push bin/Release/Swashbuckle.AspNetCore.ExtensionProperties.${{ env.FULLVERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
