@@ -3,8 +3,16 @@ name: Build Test & Publish nuget package
 on:
   push:
     branches: [ main ]
+    paths:
+    - 'src/Swashbuckle.AspNetCore.ExtensionProperties/**'
+    
   pull_request:
+    types: [opened, synchronize, reopened ]
     branches: [ main ]
+    paths:
+    - 'src/Swashbuckle.AspNetCore.ExtensionProperties/**'
+
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,19 +23,20 @@ jobs:
         working-directory: src/Swashbuckle.AspNetCore.ExtensionProperties
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
-    - uses: nuget/setup-nuget@v1
-      with:
-        nuget-api-key: ${{ secrets.NuGetAPIKey }}
-        nuget-version: 'latest'
+    - name: Get Version
+      run: echo "FULLVERSION=$(git describe --abbrev=0 --tags).$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore -c release
+      run: dotnet build --no-restore -c release -p:Version=${{ env.FULLVERSION }}
     - name: Test
       run: dotnet test --no-build --verbosity normal -c release
-    - name: Package
-      run: dotnet pack -c release
+    - name: Publish to Nuget
+      if: github.event_name == 'push' || github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
+      run: dotnet nuget push bin/Release/Swashbuckle.AspNetCore.ExtensionProperties.${{ env.FULLVERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
