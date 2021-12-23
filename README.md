@@ -30,18 +30,18 @@ This will result in a property with the `extensionPropertyName` and `extensionPr
 
 #### yaml:
 ```yaml
-      properties:
-        date:
-          type: string
-          format: date-time
-          x-date: somevalue
+properties:
+  date:
+    type: string
+    format: date-time
+    x-date: somevalue
 ```
 #### json:
 ```json
-        "properties": {
-          "date": {
-            "type": "string",
-            "format": "date-time",
-            "x-date": "somevalue"
-          },
+"properties": {
+  "date": {
+    "type": "string",
+    "format": "date-time",
+    "x-date": "somevalue"
+  },
 ```
