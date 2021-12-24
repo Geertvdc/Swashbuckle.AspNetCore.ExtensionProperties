@@ -18,17 +18,10 @@ public class SchemaTests
             Properties = new Dictionary<string, OpenApiSchema>()
             {
                 {
-                    "id", new OpenApiSchema()
-                    {
-                        Type = "integer",
-                        Format = "int32"
-                    }
+                    "id", new OpenApiSchema() { Type = "integer", Format = "int32" }
                 },
                 {
-                    "name", new OpenApiSchema()
-                    {
-                        Type = "string"
-                    }
+                    "name", new OpenApiSchema() { Type = "string" }
                 }
             }
         };
