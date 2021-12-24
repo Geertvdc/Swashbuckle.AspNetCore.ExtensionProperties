@@ -4,7 +4,7 @@ namespace Swashbuckle.AspNetCore.ExtensionProperties;
 public class FakerAttribute : OpenApiExtensionPropertyAttribute
 {
 
-    public FakerAttribute(string extensionPropertyValue) : base("x-faker", extensionPropertyValue)
+    public FakerAttribute(string fakerValue) : base("x-faker", fakerValue)
     {
     }
 }
