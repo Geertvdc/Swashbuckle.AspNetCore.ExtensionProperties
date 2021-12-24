@@ -10,7 +10,7 @@ on:
     types: [opened, synchronize, reopened ]
     branches: [ main ]
     paths:
-    - 'src/Swashbuckle.AspNetCore.ExtensionProperties/**'
+    - 'src/**'
 
   workflow_dispatch:
 
@@ -20,7 +20,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: src/Swashbuckle.AspNetCore.ExtensionProperties
+        working-directory: src/
     steps:
     - uses: actions/checkout@v2
       with:
@@ -39,4 +39,4 @@ jobs:
       run: dotnet test --no-build --verbosity normal -c release
     - name: Publish to Nuget
       if: github.event_name == 'push' || github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
-      run: dotnet nuget push bin/Release/Swashbuckle.AspNetCore.ExtensionProperties.${{ env.FULLVERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push Swashbuckle.AspNetCore.ExtensionProperties/bin/Release/Swashbuckle.AspNetCore.ExtensionProperties.${{ env.FULLVERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
