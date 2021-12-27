@@ -43,7 +43,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal -c release /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=coverage /p:Exclude=[xunit.*]* &&
            mkdir coverage && 
-           mv Swashbuckle.AspNetCore.ExtensionProperties/Swashbuckle.AspNetCore.ExtensionProperties.Tests/coverage.info coverage/lcov.info
+           mv Swashbuckle.AspNetCore.ExtensionProperties.Tests/coverage.info coverage/lcov.info
     - name: Publish Code Coverage
       run: ./codeclimate-test-reporter after-build -t lcov -r ${CODECLIMATE_TEST_REPORTER_ID} -p ./ --exit-code $?
     - name: Publish to Nuget
