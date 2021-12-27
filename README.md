@@ -2,7 +2,7 @@
 
 [![Build, Test & Publish nuget package](https://github.com/Geertvdc/Swashbuckle.AspNetCore.ExtensionProperties/actions/workflows/build-nugetpackage.yml/badge.svg)](https://github.com/Geertvdc/Swashbuckle.AspNetCore.ExtensionProperties/actions/workflows/build-nugetpackage.yml)
 [![Nuget](https://img.shields.io/nuget/v/Swashbuckle.AspNetCore.ExtensionProperties)](https://www.nuget.org/packages/Swashbuckle.AspNetCore.ExtensionProperties/)
-[![Code Climate](https://img.shields.io/codeclimate/maintainability/Geertvdc/Swashbuckle.AspNetCore.ExtensionProperties)](https://codeclimate.com/github/Geertvdc/Swashbuckle.AspNetCore.ExtensionProperties)
+[![Maintainability](https://api.codeclimate.com/v1/badges/dd225537f49dbefba874/maintainability)](https://codeclimate.com/github/Geertvdc/Swashbuckle.AspNetCore.ExtensionProperties/maintainability)
 
 Swashbuckle.AspNetCore.ExtensionProperties is a nuget package that adds extension properties for swashbuckle to add custom `"x-#####"` properties in the OpenAPI spec file for your .Net web API. This can be used to add properties needed by specific backend systems or to add fake stub data for example.
 
