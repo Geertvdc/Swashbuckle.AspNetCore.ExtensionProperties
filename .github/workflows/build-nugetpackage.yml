@@ -33,8 +33,6 @@ jobs:
       run: |
         curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./codeclimate-test-reporter
         chmod +x ./codeclimate-test-reporter
-        dotnet tool install --global coverlet.console 
-        dotnet add package coverlet.msbuild
         ./codeclimate-test-reporter before-build
     - name: Get Version
       run: echo "FULLVERSION=$(git describe --abbrev=0 --tags).$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
