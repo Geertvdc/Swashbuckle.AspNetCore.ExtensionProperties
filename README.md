@@ -46,3 +46,81 @@ properties:
     "x-date": "somevalue"
   },
 ```
+
+## Real world example:
+
+Often when building APIs you want to be able to create a sandbox sample for your consumers to test your APIs. This can be done by tools like [Open API Mocker](https://github.com/jormaechea/open-api-mocker) that take an OpenAPI spec and generates a sample API based on that spec.
+A feature of Open API Mocker is that it can generate fake data using a library called [Faker](https://www.npmjs.com/package/faker) by adding extension properties with the name `x-faker` to the OpenAPI spec.
+
+In the samples folder you can find a sample API that implements this feature.
+So how does it work?
+
+Create a new class that is used as a contract for the API and add the `Faker` attribute to it (which inherits from the `OpenApiExtensionProperty` attribute). The Faker library has a wide variaty of options to generate fake data that you can find on the documentation page of the [Faker library](https://www.npmjs.com/package/faker).
+
+```C#
+public class WeatherForecast
+{
+    [Faker(fakerValue:"date.recent")]
+    public DateTime Date { get; set; }
+
+    [Faker(fakerValue:"random.number")]
+    public int TemperatureC { get; set; }
+
+    [Faker(fakerValue:"random.number")]
+    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+
+    [Faker(fakerValue:"lorem.paragraph")]
+    public string? Summary { get; set; }
+}
+```
+
+When we run the API you can see that the `x-faker` properties are added to the OpenAPI spec.
+
+```json
+"schemas": {
+  "WeatherForecast": {
+    "type": "object",
+    "properties": {
+      "date": {
+        "type": "string",
+        "format": "date-time",
+        "x-faker": "date.recent"
+      },
+      "temperatureC": {
+        "type": "integer",
+        "format": "int32",
+        "x-faker": "random.number"
+      },
+      "temperatureF": {
+        "type": "integer",
+        "format": "int32",
+        "readOnly": true,
+        "x-faker": "random.number"
+      },
+      "summary": {
+        "type": "string",
+        "nullable": true,
+        "x-faker": "lorem.paragraph"
+      }
+    },
+    "additionalProperties": false
+  }
+}
+```
+
+Next steps are saving the OpenAPI spec to a file and passing it to the Open API Mocker.
+Downloading the OpenAPI spec can be done through the `Swashbuckle.AspNetCore.Cli` tool
+
+```Bash
+dotnet tool install -g --version 6.2.3 Swashbuckle.AspNetCore.Cli
+
+swagger tofile --output swagger.json sample/SampleApiWithFakerStub/bin/Debug/net6.0/SampleApiWithFakerStub.dll "v1" 
+```
+
+Now we can run the Mock API using docker
+
+```Bash
+docker run -v "[path to your]swagger.json:/app/schema.json" -p "8080:5000" jormaechea/open-api-mocker
+```
+
+You can now do calls to localhost:8080 to test the API and you should get back real data 
