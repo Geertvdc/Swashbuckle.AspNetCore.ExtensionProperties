@@ -63,10 +63,10 @@ public class WeatherForecast
     [Faker(fakerValue:"date.recent")]
     public DateTime Date { get; set; }
 
-    [Faker(fakerValue:"random.number")]
+    [Faker(fakerValue:"datatype.number(-10,35)")]
     public int TemperatureC { get; set; }
 
-    [Faker(fakerValue:"random.number")]
+    [Faker(fakerValue:"datatype.number(105)")]
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 
     [Faker(fakerValue:"lorem.paragraph")]
@@ -89,13 +89,13 @@ When we run the API you can see that the `x-faker` properties are added to the O
       "temperatureC": {
         "type": "integer",
         "format": "int32",
-        "x-faker": "random.number"
+        "x-faker": "datatype.number(-10,35)"
       },
       "temperatureF": {
         "type": "integer",
         "format": "int32",
         "readOnly": true,
-        "x-faker": "random.number"
+        "x-faker": "datatype.number(105)"
       },
       "summary": {
         "type": "string",
@@ -123,4 +123,15 @@ Now we can run the Mock API using docker
 docker run -v "[path to your]swagger.json:/app/schema.json" -p "8080:5000" jormaechea/open-api-mocker
 ```
 
-You can now do calls to localhost:8080 to test the API and you should get back real data 
+You can now do calls to localhost:8080 to test the API and you should get back fake data like this:
+
+```json
+[
+  {
+    "date":"2022-01-05T22:25:30.366Z",
+    "temperatureC":-6,
+    "temperatureF":41,
+    "summary":"Praesentium iste natus temporibus omnis nihil perspiciatis quo. Rerum odit blanditiis quia autem et earum magnam quod. Suscipit voluptate quia voluptatibus ea reiciendis. Sed praesentium sed in est."
+  }
+]
+```
