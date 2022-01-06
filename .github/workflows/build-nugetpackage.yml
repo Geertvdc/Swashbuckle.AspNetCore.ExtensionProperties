@@ -45,7 +45,7 @@ jobs:
            mkdir coverage && 
            mv Swashbuckle.AspNetCore.ExtensionProperties.Tests/coverage.info coverage/lcov.info
     - name: Publish Code Coverage
-      run: ./codeclimate-test-reporter after-build -t lcov -r ${{ secrets.CODECLIMATE_TEST_REPORTER_ID }} -p ./ --exit-code $?
+      run: ./codeclimate-test-reporter after-build -t lcov -r ${{ secrets.CODECLIMATE_TEST_REPORTER_ID }} -p /home/runner/work/Swashbuckle.AspNetCore.ExtensionProperties/ --exit-code $?
     - name: Publish to Nuget
-      if: github.event_name == 'push' || github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: dotnet nuget push Swashbuckle.AspNetCore.ExtensionProperties/bin/Release/Swashbuckle.AspNetCore.ExtensionProperties.${{ env.FULLVERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
