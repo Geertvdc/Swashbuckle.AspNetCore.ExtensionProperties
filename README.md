@@ -3,6 +3,7 @@
 [![Build, Test & Publish nuget package](https://github.com/Geertvdc/Swashbuckle.AspNetCore.ExtensionProperties/actions/workflows/build-nugetpackage.yml/badge.svg)](https://github.com/Geertvdc/Swashbuckle.AspNetCore.ExtensionProperties/actions/workflows/build-nugetpackage.yml)
 [![Nuget](https://img.shields.io/nuget/v/Swashbuckle.AspNetCore.ExtensionProperties)](https://www.nuget.org/packages/Swashbuckle.AspNetCore.ExtensionProperties/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/dd225537f49dbefba874/maintainability)](https://codeclimate.com/github/Geertvdc/Swashbuckle.AspNetCore.ExtensionProperties/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/dd225537f49dbefba874/test_coverage)](https://codeclimate.com/github/Geertvdc/Swashbuckle.AspNetCore.ExtensionProperties/test_coverage)
 
 Swashbuckle.AspNetCore.ExtensionProperties is a nuget package that adds extension properties for swashbuckle to add custom `"x-#####"` properties in the OpenAPI spec file for your .Net web API. This can be used to add properties needed by specific backend systems or to add fake stub data for example.
 
@@ -47,7 +48,8 @@ properties:
   },
 ```
 
-## Real world example:
+
+## Real life use case: Generating sandbox APIs from OpenAPI Spec files
 
 Often when building APIs you want to be able to create a sandbox sample for your consumers to test your APIs. This can be done by tools like [Open API Mocker](https://github.com/jormaechea/open-api-mocker) that take an OpenAPI spec and generates a sample API based on that spec.
 A feature of Open API Mocker is that it can generate fake data using a library called [Faker](https://github.com/withshepherd/faker.js) by adding extension properties with the name `x-faker` to the OpenAPI spec.
