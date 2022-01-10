@@ -52,12 +52,12 @@ properties:
 ## Real life use case: Generating sandbox APIs from OpenAPI Spec files
 
 Often when building APIs you want to be able to create a sandbox sample for your consumers to test your APIs. This can be done by tools like [Open API Mocker](https://github.com/jormaechea/open-api-mocker) that take an OpenAPI spec and generates a sample API based on that spec.
-A feature of Open API Mocker is that it can generate fake data using a library called [Faker](https://github.com/withshepherd/faker.js) by adding extension properties with the name `x-faker` to the OpenAPI spec.
+A feature of Open API Mocker is that it can generate fake data using a library called [Faker](https://github.com/faker-js/faker) by adding extension properties with the name `x-faker` to the OpenAPI spec.
 
 In the samples folder you can find a sample API that implements this feature.
 So how does it work?
 
-Create a new class that is used as a contract for the API and add the `Faker` attribute to it (which inherits from the `OpenApiExtensionProperty` attribute). The Faker library has a wide variaty of options to generate fake data that you can find on the documentation page of the [Faker library](https://www.npmjs.com/package/faker).
+Create a new class that is used as a contract for the API and add the `Faker` attribute to it (which inherits from the `OpenApiExtensionProperty` attribute). The Faker library has a wide variaty of options to generate fake data that you can find on the documentation page of the [Faker library](https://github.com/faker-js/faker).
 
 ```C#
 public class WeatherForecast
